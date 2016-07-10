@@ -16,9 +16,16 @@ import os
 import ConfigParser
 import logging
 
+from keras.datasets import mnist
+from keras.utils import np_utils
+
 from keras.models import Sequential 
 from keras.layers import Dense 
 from keras.layers import Dropout
+
+from keras.layers import Convolution2D
+from keras.layers import MaxPooling2D
+from keras.layers import Flatten
 
 from keras.optimizers import SGD
 
@@ -30,25 +37,44 @@ os.sys.path.append(base_path)
 config_path = base_path + '/conf/'
 data_path = base_path + '/data/'
 
-def create_model():
+def create_cnn_model(num_classes):
     """
-    create model
+    create a cnn model
     """
     # Define and Compile 
     model = Sequential()
-    model.add(Dense(12, input_dim=8, init='uniform', activation='relu')) 
-    model.add(Dense(8, init='uniform', activation='relu'))
-    model.add(Dense(1, init='uniform', activation='sigmoid'))
-    model.add(Dropout(0.2))
+    model.add(Convolution2D(32, 3, 3, border_mode='valid', input_shape=(1, 28, 28), activation='relu'))
+    model.add(MaxPooling2D(pool_size=(2, 2)))
+    model.add(Flatten())
+    model.add(Dense(128, activation='relu'))
+    model.add(Dense(num_classes, activation='softmax'))
 
     sgd = SGD(lr=0.1, momentum=0.9, decay=0.0001, nesterov=True) # learning rate schedule
-    model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy']) # Fit the model
+    model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy']) # Fit the model
     #model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']) # Fit the model
     return model
  
 
 
 if "__main__" == __name__:
+
+    (X_train, y_train), (X_test, y_test) = mnist.load_data()
+    X_train = X_train.reshape(X_train.shape[0], 1, 28, 28) 
+    X_test = X_test.reshape(X_test.shape[0], 1, 28, 28)
+    classes = set()
+    for i in y_train:
+        classes.add(i)
+    y_train = np_utils.to_categorical(y_train)
+    
+    y_test = np_utils.to_categorical(y_test)
+    
+    num_classes = len(classes)
+    aa = create_cnn_model(num_classes=num_classes)
+    print aa
+    
+    
+
+    exit(0)
 
     data_file = data_path + 'pima-indians-diabetes.csv'
     lst_x_keys = list(xrange(0, 8))

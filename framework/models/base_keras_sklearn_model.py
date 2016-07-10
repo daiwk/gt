@@ -21,7 +21,6 @@ base_path = os.path.dirname(os.path.abspath(__file__)) + "/../../"
 os.sys.path.append(base_path)
 DEFAULT_LOG_FILENAME = base_path + "/log/base_keras_model"
 DEFAULT_MODEL_PATH = base_path + "/model/"
-config_path = base_path + '/conf/'
 
 import logging
 
