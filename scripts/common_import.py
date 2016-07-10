@@ -19,5 +19,5 @@ import ConfigParser
 base_path = os.path.dirname(os.path.abspath(__file__)) + "/../"
 os.sys.path.append(base_path)
 
-from plugins.base_model.base_keras_model import BaseKerasModel
-from plugins.base_model.base_keras_sklearn_model import BaseKerasSklearnModel
+from framework.models.base_keras_model import BaseKerasModel
+from framework.models.base_keras_sklearn_model import BaseKerasSklearnModel
