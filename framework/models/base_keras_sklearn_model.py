@@ -70,15 +70,31 @@ class BaseKerasSklearnModel(base_model.BaseModel):
     """
     base keras model based on keras's model(without sklearn)
     """
-    def __init__(self, data_file, delimiter, lst_x_keys, lst_y_keys, log_filename=DEFAULT_LOG_FILENAME, model_path=DEFAULT_MODEL_PATH, create_model_func=create_model_demo):
+##    def __init__(self, data_file, delimiter, lst_x_keys, lst_y_keys, log_filename=DEFAULT_LOG_FILENAME, model_path=DEFAULT_MODEL_PATH, create_model_func=create_model_demo):
+##        """
+##        init
+##        """
+##        import framework.tools.log as log
+##        loger = log.init_log(log_filename)
+##        self.load_data(data_file, delimiter, lst_x_keys, lst_y_keys)
+##        self.model_path = model_path
+##        self.create_model_func=create_model_func
+
+    def __init__(self, **kargs):
         """
         init
         """
         import framework.tools.log as log
+        self.kargs = kargs
+        log_filename = self.kargs["basic_params"]["log_filename"]
+        model_path = self.kargs["basic_params"]["model_path"]
+        self.load_data_func = self.kargs["load_data"]["method"]
+        self.create_model_func = self.kargs["create_model"]["method"]
         loger = log.init_log(log_filename)
-        self.load_data(data_file, delimiter, lst_x_keys, lst_y_keys)
+        (self.dataset, self.X, self.Y) = self.load_data_func(**self.kargs["load_data"]["params"])
         self.model_path = model_path
-        self.create_model_func=create_model_func
+        self.dic_params = {}
+ 
 
     def load_data(self, data_file, delimiter, lst_x_keys, lst_y_keys):
         """
@@ -89,22 +105,6 @@ class BaseKerasSklearnModel(base_model.BaseModel):
         self.X = self.dataset[:, lst_x_keys] 
         self.Y = self.dataset[:, lst_y_keys]
     
-    def create_model(self):
-        """
-        create model
-        """
-        # Define and Compile 
-        model = Sequential()
-        model.add(Dense(12, input_dim=8, init='uniform', activation='relu')) 
-        model.add(Dense(8, init='uniform', activation='relu'))
-        model.add(Dense(1, init='uniform', activation='sigmoid'))
-        model.add(Dropout(0.2))
-    
-        sgd = SGD(lr=0.1, momentum=0.9, decay=0.0001, nesterov=True) # learning rate schedule
-        model.compile(loss='binary_crossentropy', optimizer=sgd, metrics=['accuracy']) # Fit the model
-        #model.compile(loss='binary_crossentropy', optimizer='adam', metrics=['accuracy']) # Fit the model
-        return model
-    
     def init_callbacks(self):
         """
         init all callbacks
@@ -114,7 +114,7 @@ class BaseKerasSklearnModel(base_model.BaseModel):
                 monitor='acc', save_best_only=False)
         history_callback = LossHistory()
         callbacks_list = [checkpoint_callback, history_callback]
-        self.dic_params = {"callbacks": callbacks_list}
+        self.dic_params["callbacks"] = callbacks_list
 
     def init_model(self):
         """
@@ -122,7 +122,8 @@ class BaseKerasSklearnModel(base_model.BaseModel):
         """
         train_params = {"nb_epoch": 10, "batch_size": 10}
         self.dic_params.update(train_params)
-        self.model = KerasClassifier(build_fn=self.create_model_func)
+        self.model = KerasClassifier(build_fn=self.create_model_func, **self.kargs["create_model"]["params"])
+#        self.model = KerasClassifier(build_fn=self.create_model_func)
         self.model.set_params(**self.dic_params)
     
     def train_model(self):

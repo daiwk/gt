@@ -30,8 +30,6 @@ from keras.models import Sequential
 from keras.layers import Dense 
 from keras.layers import Dropout
 
-from keras.wrappers.scikit_learn import KerasClassifier
-
 from keras.optimizers import SGD
 
 from keras.callbacks import ModelCheckpoint
@@ -70,26 +68,23 @@ class BaseKerasModel(base_model.BaseModel):
     """
     base keras model based on keras's model(without sklearn)
     """
-    def __init__(self, data_file, delimiter, lst_x_keys, lst_y_keys, \
-            log_filename=DEFAULT_LOG_FILENAME, model_path=DEFAULT_MODEL_PATH, create_model_func=create_model_demo):
+##def __init__(self, data_file, delimiter, lst_x_keys, lst_y_keys, \
+##            log_filename=DEFAULT_LOG_FILENAME, model_path=DEFAULT_MODEL_PATH, create_model_func=create_model_demo):
+    def __init__(self, **kargs):
         """
         init
         """
         import framework.tools.log as log
+        self.kargs = kargs
+        log_filename = self.kargs["basic_params"]["log_filename"]
+        model_path = self.kargs["basic_params"]["model_path"]
+        self.load_data_func = self.kargs["load_data"]["method"]
+        self.create_model_func = self.kargs["create_model"]["method"]
         loger = log.init_log(log_filename)
-        self.load_data(data_file, delimiter, lst_x_keys, lst_y_keys)
+        (self.dataset, self.X, self.Y) = self.load_data_func(**self.kargs["load_data"]["params"])
         self.model_path = model_path
-        self.create_model_func=create_model_func
-
-    def load_data(self, data_file, delimiter, lst_x_keys, lst_y_keys):
-        """
-        load data
-        """
-        # Load the dataset
-        self.dataset = numpy.loadtxt(data_file, delimiter=",") 
-        self.X = self.dataset[:, lst_x_keys] 
-        self.Y = self.dataset[:, lst_y_keys]
-    
+        self.dic_params = {}
+   
     def create_model(self):
         """
         create model
@@ -115,13 +110,13 @@ class BaseKerasModel(base_model.BaseModel):
                 monitor='acc', save_best_only=False)
         history_callback = LossHistory()
         callbacks_list = [checkpoint_callback, history_callback]
-        self.dic_params = {"callbacks": callbacks_list}
+        self.dic_params["callbacks"] = callbacks_list
 
     def init_model(self):
         """
         init model
         """
-        self.model = self.create_model()
+        self.model = self.create_model_func(**self.kargs["create_model"]["params"])
     
     def train_model(self, ):
         """
