@@ -24,10 +24,8 @@ from sklearn.metrics import precision_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import roc_curve
 from sklearn.metrics import roc_auc_score
-
-from sklearn.metrics import classification_report
-
 from sklearn.metrics import auc
+from sklearn.metrics import classification_report
 
 
 def generate_demo_data(class_num=2, starts_from=0):
