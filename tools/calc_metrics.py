@@ -7,6 +7,10 @@
 ########################################################################
  
 """
+all can be refered to:
+
+http://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
+
 File: calc_metrics.py
 Author: daiwenkai(daiwenkai@baidu.com)
 Date: 2017/07/06 23:36:22
@@ -14,12 +18,13 @@ Date: 2017/07/06 23:36:22
 
 import numpy as np
 from sklearn.metrics import confusion_matrix
-from sklearn.metrics import roc_curve
-from sklearn.metrics import roc_auc_score
 from sklearn.metrics import accuracy_score
 from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import f1_score
+from sklearn.metrics import roc_curve
+from sklearn.metrics import roc_auc_score
+
 from sklearn.metrics import classification_report
 
 from sklearn.metrics import auc
@@ -52,28 +57,6 @@ def generate_demo_data(class_num=2, starts_from=0):
     return labels_true, labels_pred_prob, labels_pred, labels_name
 
 
-def get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
-    """
-    Args:
-        labels_true
-        labels_pred_prob
-        pos_label: Label considered as positive and others are considered negative.
-        class_num: if class_num == 2 and label starts from 0: `roc_auc_score` equals to `roc_curve then auc`' s res
-    Returns:
-        auc
-
-    """
-    if class_num == 2 and starts_from == 0:
-        return roc_auc_score(labels_true, labels_pred_prob)
-    else:
-        fpr, tpr, thresholds = roc_curve(labels_true, labels_pred_prob, pos_label=pos_label)
-        print "fpr", fpr
-        print "tpr", tpr
-        print "thresholds", thresholds
-
-        return auc(fpr, tpr)
-
-
 def get_confusion_matrix(labels_true, labels_pred, class_num, starts_from):
     """
     Args:
@@ -90,7 +73,7 @@ def get_confusion_matrix(labels_true, labels_pred, class_num, starts_from):
         (tn, fp, fn, tp) = confusion_matrix(labels_true, labels_pred).ravel()
         print "tn: ", tn
         print "fp: ", fp
-        print "fn: ", tn
+        print "fn: ", fn
         print "tp: ", tp
     
     return confusion_matrix_res
@@ -112,10 +95,12 @@ def get_accuracy(labels_true, labels_pred, normalize_type=True):
 
 def get_recall(labels_true, labels_pred, average_type=None):
     """
+        tp / (tp + fn)
     Args:
         labels_true
         labels_pred
         average_type:
+            + 
             + micro: Calculate metrics globally by counting the total true positives, false negatives and false positives.
             + macro: Calculate metrics for each label, and find their unweighted mean. This does not take label imbalance into account.
             + weighted: Calculate metrics for each label, and find their average, weighted by support (the number of true instances for each label). This alters 'macro' to account for label imbalance; it can result in an F-score that is not between precision and recall.
@@ -129,6 +114,7 @@ def get_recall(labels_true, labels_pred, average_type=None):
 
 def get_precision(labels_true, labels_pred, average_type):
     """
+        tp / (tp + fp)
     Args:
         labels_true
         labels_pred
@@ -160,45 +146,79 @@ def get_f1(labels_true, labels_pred, average_type=None):
     return f1_score(labels_true, labels_pred, average=average_type)
 
 
+def get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
+    """
+    Args:
+        labels_true
+        labels_pred_prob
+        pos_label: Label considered as positive and others are considered negative.
+        class_num: if class_num == 2 and label starts from 0: `roc_auc_score` equals to `roc_curve then auc`' s res
+    Returns:
+        auc
+
+    """
+    if class_num == 2 and starts_from == 0:
+        return roc_auc_score(labels_true, labels_pred_prob)
+    else:
+        fpr, tpr, thresholds = roc_curve(labels_true, labels_pred_prob, pos_label=pos_label)
+        print "fpr", fpr
+        print "tpr", tpr
+        print "thresholds", thresholds
+
+        return auc(fpr, tpr)
+
+
 if __name__ == "__main__":
     ## settings
-    class_num = 3 # or 3
+    class_num = 2 # or 3
     starts_from = 0 # or 1
     pos_label = 1 # if not binary, it is defined by user... if binary, it is starts_from + 1
 
     labels_true, labels_pred_prob, labels_pred, labels_name = generate_demo_data(class_num, starts_from) 
+    print "------------------------------------"
     print "labels_name", labels_name
     print "labels_true: ", labels_true
     print "labels_pred_prob: ", labels_pred_prob
     print "labels_pred: ", labels_pred
-    average_type = "micro"
     normalize_type = True
     print "class_num: ", class_num
 
-    print "--------"
+    print "------------------------------------"
 
+    ## confusion_matrix 
     print "confusion matrix: "
     confusion_matrix_res = get_confusion_matrix(labels_true, labels_pred, class_num, starts_from)
     print confusion_matrix_res
-    print "--------"
+    print "------------------------------------"
 
-    ## calc
+    ## accuracy
     print "accuracy: ", get_accuracy(labels_true, labels_pred, normalize_type)
-    print "recall micro: ", get_recall(labels_true, labels_pred, average_type)
-    print "precision micro: ", get_precision(labels_true, labels_pred, average_type)
-    print "f1 micro: ", get_f1(labels_true, labels_pred, average_type)
 
-    print "--------"
+    print "-------- average_type: micro -------"
 
+    ## micro recall/precision/f1
+    average_type = "micro"
+    print "recall: ", get_recall(labels_true, labels_pred, average_type)
+    print "precision: ", get_precision(labels_true, labels_pred, average_type)
+    print "f1: ", get_f1(labels_true, labels_pred, average_type)
+
+    print "-------- average_type: None --------"
+
+    ## None recall/precision/f1
     average_type = None
-    print "accuracy: ", get_accuracy(labels_true, labels_pred, normalize_type)
-    print "recall None: ", get_recall(labels_true, labels_pred, average_type)
-    print "precision None: ", get_precision(labels_true, labels_pred, average_type)
-    print "f1 None: ", get_f1(labels_true, labels_pred, average_type)
+    print "recall: ", get_recall(labels_true, labels_pred, average_type)
+    print "precision: ", get_precision(labels_true, labels_pred, average_type)
+    print "f1: ", get_f1(labels_true, labels_pred, average_type)
 
-    print "--------"
+    print "------------------------------------"
 
-    print "auc: ", get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from)
+    ## auc
+    print "auc: " 
+    print get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from)
+
+    print "------------------------------------"
+
+    ## classification report
     print "classification report: "
     print classification_report(labels_true, labels_pred, target_names=labels_name)
 
