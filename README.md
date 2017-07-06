@@ -1,7 +1,10 @@
 # gt
-generalized t* tools, t is short for theano, theanets, tesorflow, ..., etc
-ii
+generalized t* tools, t is short for tensorflow, theano, theanets, ..., etc
 
-#problems:
+
+# Any problems:
 please install the python-tk package:
+
+```
 apt-get install python-tk
+```
