@@ -27,6 +27,8 @@ from sklearn.metrics import roc_auc_score
 from sklearn.metrics import auc
 from sklearn.metrics import classification_report
 
+import matplotlib.pyplot as plt
+
 
 def generate_demo_data(class_num=2, starts_from=0):
     """
@@ -156,14 +158,27 @@ def get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
 
     """
     if class_num == 2 and starts_from == 0:
-        return roc_auc_score(labels_true, labels_pred_prob)
+        auc_res = roc_auc_score(labels_true, labels_pred_prob)
     else:
         fpr, tpr, thresholds = roc_curve(labels_true, labels_pred_prob, pos_label=pos_label)
         print "fpr", fpr
         print "tpr", tpr
         print "thresholds", thresholds
 
-        return auc(fpr, tpr)
+        auc_res = auc(fpr, tpr)
+
+    fpr, tpr, thresholds = roc_curve(labels_true, labels_pred_prob, pos_label=pos_label)
+    plt.figure(1)
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.plot(fpr, tpr, label='pos_label=%d' % (pos_label))
+    plt.xlabel('False positive rate')
+    plt.ylabel('True positive rate')
+    plt.title('ROC curve')
+    plt.legend(loc='best')
+
+    plt.savefig("tmp_roc.png")
+
+    return auc_res
 
 
 if __name__ == "__main__":
@@ -219,4 +234,5 @@ if __name__ == "__main__":
     ## classification report
     print "classification report: "
     print classification_report(labels_true, labels_pred, target_names=labels_name)
+
 
