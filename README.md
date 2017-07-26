@@ -1,5 +1,5 @@
 # gt
-generalized t* tools, t is short for tensorflow, theano, theanets, ..., etc
+generalized t* tools, t is short for Tensorflow, pyTorch, Theano, theanets, ..., etc
 
 
 # Any problems:
