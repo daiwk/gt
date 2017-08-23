@@ -1,4 +1,5 @@
 import keras
+from keras import metrics
 from keras.models import Sequential
 from keras.layers import Dense, Dropout, Merge, Reshape
 from keras.layers import Embedding
@@ -20,10 +21,11 @@ def multi_input_model(model):
     model_entityids.add(Embedding(max_entityid, output_dim=embedding_size, input_shape=(10,)))
 
     model.add(Merge([model_displayid, model_adid, model_entityids], mode='concat', concat_axis=1))
+    model.add(Dense(30))
     model.add(Dense(1, activation='sigmoid'))
     model.compile(loss='binary_crossentropy',
                   optimizer='rmsprop',
-                  metrics=['accuracy'])
+                  metrics=['accuracy', 'mae'])
 
 
 if __name__ == "__main__":
