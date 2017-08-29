@@ -1,4 +1,11 @@
 # author: flyzzaway
+'''
+export PATH=/opt/compiler/gcc-4.8.2/bin/:$PATH
+import theano
+theano.config.openmp = True
+OMP_NUM_THREADS=20 python xxx.py
+就可以跑多核cpu了。。另外 装个jumbo install htop，可以看到每个核的占用情况。。
+'''
 import numpy as np
 import pandas as pd
 import gc
@@ -37,6 +44,7 @@ def sub_input_model(max_dict,embedding_size,max_name,input_shape_dim1,name):
     sub_model = Sequential()
     sub_model.add(Embedding(input_dim = max_dict[max_name], output_dim=embedding_size,input_shape=(input_shape_dim1,),name = name)) #input_shape=(1,)
     sub_model.add(Flatten(name = 'Flatten' + name))
+    sub_model.add(Dense(name = 'Dense' + name))
     return sub_model
 
 def multi_input_model(model,max_dict):
