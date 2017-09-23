@@ -23,6 +23,7 @@ from sklearn.metrics import recall_score
 from sklearn.metrics import precision_score
 from sklearn.metrics import f1_score
 from sklearn.metrics import roc_curve
+from sklearn.metrics import precision_recall_curve
 from sklearn.metrics import roc_auc_score
 from sklearn.metrics import auc
 from sklearn.metrics import classification_report
@@ -167,19 +168,62 @@ def get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
 
         auc_res = auc(fpr, tpr)
 
+    """
+    + fpr : array, shape = [>2]
+    Increasing false positive rates such that element i is the false positive rate of predictions with score >= thresholds[i].
+    + tpr : array, shape = [>2]
+    Increasing true positive rates such that element i is the true positive rate of predictions with score >= thresholds[i].
+    + thresholds : array, shape = [n_thresholds]
+    Decreasing thresholds on the decision function used to compute fpr and tpr. thresholds[0] represents no instances being predicted and is arbitrarily set to max(y_score) + 1.
+    """
     fpr, tpr, thresholds = roc_curve(labels_true, labels_pred_prob, pos_label=pos_label)
     plt.figure(1)
     plt.plot([0, 1], [0, 1], 'k--')
     plt.plot(fpr, tpr, label='pos_label=%d' % (pos_label))
-    plt.xlabel('False positive rate')
-    plt.ylabel('True positive rate')
+    plt.xlabel('False positive rate(1-specificity)')
+    plt.ylabel('True positive rate(recall/sensitivity)')
     plt.title('ROC curve')
     plt.legend(loc='best')
 
     plt.savefig("tmp_roc.png")
+    plt.close()
 
     return auc_res
 
+
+def get_pr_curve(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
+    """
+    Args:
+        labels_true
+        labels_pred_prob
+        pos_label: Label considered as positive and others are considered negative.
+        class_num: if class_num == 2 and label starts from 0: `roc_auc_score` equals to `roc_curve then auc`' s res
+    Returns:
+        + precision : array, shape = [n_thresholds + 1]
+        Precision values such that element i is the precision of predictions with score >= thresholds[i] and the last element is 1.
+        + recall : array, shape = [n_thresholds + 1]
+        Decreasing recall values such that element i is the recall of predictions with score >= thresholds[i] and the last element is 0.
+        + thresholds : array, shape = [n_thresholds <= len(np.unique(probas_pred))]
+        Increasing thresholds on the decision function used to compute precision and recall.
+
+    """
+    precision, recall, thresholds = precision_recall_curve(labels_true, labels_pred_prob, pos_label=pos_label)
+    print "precisions", precision
+    print "recalls", recall
+    print "thresholds", thresholds
+
+    plt.figure(1)
+    plt.plot([0, 1], [0, 1], 'k--')
+    plt.plot(recall, precision, label='pos_label=%d' % (pos_label))
+    plt.xlabel('recall(sensitivity)')
+    plt.ylabel('precision')
+    plt.title('precision-recall curve')
+    plt.legend(loc='best')
+
+    plt.savefig("tmp_pr_curve.png")
+    plt.close()
+
+    return precision, recall, thresholds
 
 if __name__ == "__main__":
     ## settings
@@ -228,6 +272,12 @@ if __name__ == "__main__":
     ## auc
     print "auc: " 
     print get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from)
+
+    print "------------------------------------"
+
+    ## p-r curve
+    print "p-r curve: " 
+    get_pr_curve(labels_true, labels_pred_prob, pos_label, class_num, starts_from)
 
     print "------------------------------------"
 
