@@ -16,6 +16,8 @@ Author: daiwenkai(daiwenkai@baidu.com)
 Date: 2017/07/06 23:36:22
 """
 
+from math import sqrt
+
 import numpy as np
 from sklearn.metrics import confusion_matrix
 from sklearn.metrics import accuracy_score
@@ -57,6 +59,28 @@ def generate_demo_data(class_num=2, starts_from=0):
         
     return labels_true, labels_pred_prob, labels_pred, labels_name
 
+def multiply(a,b):
+    #a,b两个列表的数据一一对应相乘之后求和
+    sum_ab=0.0
+    for i in range(len(a)):
+        temp=a[i]*b[i]
+        sum_ab+=temp
+    return sum_ab
+
+def cal_pearson(x,y):
+    n=len(x)
+    #求x_list、y_list元素之和
+    sum_x=sum(x)
+    sum_y=sum(y)
+    #求x_list、y_list元素乘积之和
+    sum_xy=multiply(x,y)
+    #求x_list、y_list的平方和
+    sum_x2 = sum([pow(i,2) for i in x])
+    sum_y2 = sum([pow(j,2) for j in y])
+    molecular=sum_xy-(float(sum_x)*float(sum_y)/n)
+    #计算Pearson相关系数，molecular为分子，denominator为分母
+    denominator=sqrt((sum_x2-float(sum_x**2)/n)*(sum_y2-float(sum_y**2)/n))
+    return molecular/denominator
 
 def get_confusion_matrix(labels_true, labels_pred, class_num, starts_from):
     """
