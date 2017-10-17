@@ -81,7 +81,7 @@ class BaseKerasModel(base_model.BaseModel):
         self.load_data_func = self.kargs["load_data"]["method"]
         self.create_model_func = self.kargs["create_model"]["method"]
         loger = log.init_log(log_filename)
-        (self.dataset, self.X, self.Y) = self.load_data_func(**self.kargs["load_data"]["params"])
+        (self.dataset, self.X, self.Y, self.X_evaluation, self.Y_evaluation) = self.load_data_func(**self.kargs["load_data"]["params"])
         self.model_path = model_path
         self.dic_params = {}
    
@@ -124,6 +124,8 @@ class BaseKerasModel(base_model.BaseModel):
         """
         X = self.X
         Y = self.Y
+        X_evaluation = self.X_evaluation
+        Y_evaluation = self.Y_evaluation
         train_params = {"nb_epoch": 10, "batch_size": 10}
         self.dic_params.update(train_params)
         history = self.model.fit(X, Y, **self.dic_params) # Evaluate the model

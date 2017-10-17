@@ -42,7 +42,7 @@ def my_xgboost_load_data(data_file, delimiter, lst_x_keys, lst_y_keys):
     seed = 7
     test_size = 0.33
     X_train, X_test, y_train, y_test = train_test_split(X, Y, test_size=test_size, random_state=seed)
-    return (dataset, X_train, y_train)
+    return (dataset, X_train, y_train, X_test, y_test)
 
 
 def my_xgboost_create_model():

@@ -91,7 +91,7 @@ class BaseKerasSklearnModel(base_model.BaseModel):
         self.load_data_func = self.kargs["load_data"]["method"]
         self.create_model_func = self.kargs["create_model"]["method"]
         loger = log.init_log(log_filename)
-        (self.dataset, self.X, self.Y) = self.load_data_func(**self.kargs["load_data"]["params"])
+        (self.dataset, self.X, self.Y, self.X_evaluation, self.Y_evaluation) = self.load_data_func(**self.kargs["load_data"]["params"])
         self.model_path = model_path
         self.dic_params = {}
  
@@ -132,6 +132,8 @@ class BaseKerasSklearnModel(base_model.BaseModel):
         """
         X = self.X
         Y = self.Y
+        X_evaluation = self.X_evaluation
+        Y_evaluation = self.Y_evaluation
         seed = 7
         numpy.random.seed(seed) # Load the dataset
         kfold = StratifiedKFold(y=Y, n_folds=10, shuffle=True, random_state=seed)

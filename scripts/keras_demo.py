@@ -56,7 +56,7 @@ def my_cnn_load_data():
 
     dataset = (X_train, y_train)
 
-    return (dataset, X_train, y_train)
+    return (dataset, X_train, y_train, X_test, y_test)
 
 
 def my_cnn_create_model(num_classes):
@@ -85,7 +85,10 @@ def my_load_data(data_file, delimiter, lst_x_keys, lst_y_keys):
     dataset = numpy.loadtxt(data_file, delimiter=delimiter) 
     X = dataset[:, lst_x_keys] 
     Y = dataset[:, lst_y_keys]
-    return (dataset, X, Y)
+    ## mock
+    X_test = X
+    Y_test = Y 
+    return (dataset, X, Y, X_test, Y_test)
  
 
 def my_create_model():
