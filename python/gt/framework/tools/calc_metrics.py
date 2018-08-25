@@ -48,6 +48,13 @@ def generate_demo_data(class_num=2, starts_from=0):
     return labels_true, labels_pred_prob, labels_pred, labels_name
 
 def multiply(a,b):
+    """
+    Args:
+        + a: a list, like [a1,a2]
+        + b: a list, like [b1,b2]
+    Returns:
+        a1b1+a2b2
+    """
     #a,b两个列表的数据一一对应相乘之后求和
     sum_ab=0.0
     for i in range(len(a)):
@@ -56,6 +63,13 @@ def multiply(a,b):
     return sum_ab
 
 def cal_pearson(x,y):
+    '''
+    Args:
+        + x: a list
+        + y: a list
+    Returns:
+        Pearson relation between x and y
+    '''
     n=len(x)
     #求x_list、y_list元素之和
     sum_x=sum(x)
@@ -73,8 +87,10 @@ def cal_pearson(x,y):
 def get_confusion_matrix(labels_true, labels_pred, class_num, starts_from):
     """
     Args:
-        labels_true
-        labels_pred
+        + labels_true
+        + labels_pred
+        + class_num
+        + starts_from
     Returns:
         (confusion_matrix_res, (tn, fp, fn, tp))
 
@@ -96,9 +112,9 @@ def get_accuracy(labels_true, labels_pred, normalize_type=True):
     """
     In multilabel classification, this function computes subset accuracy: the set of labels predicted for a sample must exactly match the corresponding set of labels in y_true.
     Args:
-        labels_true
-        labels_pred
-        normalize_type:
+        + labels_true
+        + labels_pred
+        + normalize_type:
             return the number of correctly classified samples. Otherwise, return the fraction of correctly classified samples.
     Returns:
         accuracy
@@ -110,9 +126,9 @@ def get_recall(labels_true, labels_pred, average_type=None):
     """
         tp / (tp + fn)
     Args:
-        labels_true
-        labels_pred
-        average_type:
+        + labels_true
+        + labels_pred
+        + average_type:
             + 
             + micro: Calculate metrics globally by counting the total true positives, false negatives and false positives.
             + macro: Calculate metrics for each label, and find their unweighted mean. This does not take label imbalance into account.
@@ -145,9 +161,9 @@ def get_precision(labels_true, labels_pred, average_type):
 def get_f1(labels_true, labels_pred, average_type=None):
     """
     Args:
-        labels_true
-        labels_pred
-        average_type:
+        + labels_true
+        + labels_pred
+        + average_type:
             + micro: Calculate metrics globally by counting the total true positives, false negatives and false positives.
             + macro: Calculate metrics for each label, and find their unweighted mean. This does not take label imbalance into account.
             + weighted: Calculate metrics for each label, and find their average, weighted by support (the number of true instances for each label). This alters 'macro' to account for label imbalance; it can result in an F-score that is not between precision and recall.
@@ -162,10 +178,10 @@ def get_f1(labels_true, labels_pred, average_type=None):
 def get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
     """
     Args:
-        labels_true
-        labels_pred_prob
-        pos_label: Label considered as positive and others are considered negative.
-        class_num: if class_num == 2 and label starts from 0: `roc_auc_score` equals to `roc_curve then auc`' s res
+        + labels_true
+        + labels_pred_prob
+        + pos_label: Label considered as positive and others are considered negative.
+        + class_num: if class_num == 2 and label starts from 0: `roc_auc_score` equals to `roc_curve then auc`' s res
     Returns:
         auc
 
@@ -180,14 +196,14 @@ def get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
 
         auc_res = auc(fpr, tpr)
 
-    """
-    + fpr : array, shape = [>2]
-    Increasing false positive rates such that element i is the false positive rate of predictions with score >= thresholds[i].
-    + tpr : array, shape = [>2]
-    Increasing true positive rates such that element i is the true positive rate of predictions with score >= thresholds[i].
-    + thresholds : array, shape = [n_thresholds]
-    Decreasing thresholds on the decision function used to compute fpr and tpr. thresholds[0] represents no instances being predicted and is arbitrarily set to max(y_score) + 1.
-    """
+    
+##    + fpr : array, shape = [>2]
+##    Increasing false positive rates such that element i is the false positive rate of predictions with score >= thresholds[i].
+##    + tpr : array, shape = [>2]
+##    Increasing true positive rates such that element i is the true positive rate of predictions with score >= thresholds[i].
+##    + thresholds : array, shape = [n_thresholds]
+##    Decreasing thresholds on the decision function used to compute fpr and tpr. thresholds[0] represents no instances being predicted and is arbitrarily set to max(y_score) + 1.
+    
     fpr, tpr, thresholds = roc_curve(labels_true, labels_pred_prob, pos_label=pos_label)
     plt.figure(1)
     plt.plot([0, 1], [0, 1], 'k--')
@@ -206,10 +222,10 @@ def get_auc(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
 def get_pr_curve(labels_true, labels_pred_prob, pos_label, class_num, starts_from=0):
     """
     Args:
-        labels_true
-        labels_pred_prob
-        pos_label: Label considered as positive and others are considered negative.
-        class_num: if class_num == 2 and label starts from 0: `roc_auc_score` equals to `roc_curve then auc`' s res
+        + labels_true
+        + labels_pred_prob
+        + pos_label: Label considered as positive and others are considered negative.
+        + class_num: if class_num == 2 and label starts from 0: `roc_auc_score` equals to `roc_curve then auc`' s res
     Returns:
         + precision : array, shape = [n_thresholds + 1]
         Precision values such that element i is the precision of predictions with score >= thresholds[i] and the last element is 1.

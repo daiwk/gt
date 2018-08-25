@@ -202,6 +202,7 @@ def ndcg_at_k(r, k, method=0):
 
     Example from
     http://www.stanford.edu/class/cs276/handouts/EvaluationNew-handout-6-per.pdf
+
     >>> r = [3, 2, 3, 0, 0, 1, 2, 2, 3, 0]
     >>> ndcg_at_k(r, 1)
     1.0
@@ -230,7 +231,3 @@ def ndcg_at_k(r, k, method=0):
         return 0.
     return dcg_at_k(r, k, method) / dcg_max
 
-
-if __name__ == "__main__":
-    import doctest
-    doctest.testmod()
