@@ -1,41 +1,17 @@
-Template
+简介
 ========
 
-$project will solve your problem of where to start with documentation,
-by providing a basic explanation of how to do it easily.
+generalized t* tools, t is short for Tensorflow, pyTorch, Theano, theanets, ..., etc
 
-Look how easy it is to use:
-
-    import project
-    # Get your stuff done
-    project.do_stuff()
-
-Features
+依赖
 --------
 
-- Be awesome
-- Make things faster
+    $apt-get install python-tk
 
-Installation
+安装方式
 ------------
 
 Install $project by running:
 
-    install project
+    $install project
 
-Contribute
-----------
-
-- Issue Tracker: github.com/$project/$project/issues
-- Source Code: github.com/$project/$project
-
-Support
--------
-
-If you are having issues, please let us know.
-We have a mailing list located at: project@google-groups.com
-
-License
--------
-
-The project is licensed under the BSD license.
