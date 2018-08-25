@@ -5,13 +5,6 @@ generalized t* tools, t is short for Tensorflow, pyTorch, Theano, theanets, ...,
 
 依赖
 --------
-::
+如果出现了什么问题，先装个python-tk::
     apt-get install python-tk
-
-安装方式
-------------
-
-Install $project by running::
-
-    install project
 
