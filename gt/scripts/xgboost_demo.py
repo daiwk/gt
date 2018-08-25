@@ -33,6 +33,7 @@ data_path = base_path + '/data/'
 
 def my_xgboost_load_data(data_file, delimiter, lst_x_keys, lst_y_keys):
     """
+    my_xgboost_load_data
     """
     dataset = numpy.loadtxt(data_file, delimiter=delimiter)
     # split data into X and y
@@ -56,6 +57,7 @@ def my_xgboost_create_model():
 
 def train_xgboost_demo():
     """
+    train_xgboost_demo
     """
     ### base
     data_file = data_path + 'pima-indians-diabetes.csv'

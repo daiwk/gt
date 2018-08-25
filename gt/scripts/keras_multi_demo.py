@@ -18,6 +18,9 @@ from ml_metrics import mapk
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils import plot_model
 def get_max():
+    '''
+    get_max
+    '''
     
     max_dict = {}
     max_dict['max_displayid'] = 172668
@@ -40,6 +43,9 @@ def get_max():
 
 
 def sub_input_model(max_dict,embedding_size,max_name,input_shape_dim1,name):
+    '''
+    sub_input_model
+    '''
     print "sub_input_model"
     sub_model = Sequential()
     sub_model.add(Embedding(input_dim = max_dict[max_name], output_dim=embedding_size,input_shape=(input_shape_dim1,),name = name)) #input_shape=(1,)
@@ -48,6 +54,9 @@ def sub_input_model(max_dict,embedding_size,max_name,input_shape_dim1,name):
     return sub_model
 
 def multi_input_model(model,max_dict):
+    '''
+    multi_input_model
+    '''
     print "multi_input_model"
  
     model_displayid = sub_input_model(max_dict,embedding_size = 50,max_name = 'max_displayid',input_shape_dim1 = 1,name='displayid')

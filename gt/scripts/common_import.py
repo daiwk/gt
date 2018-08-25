@@ -1,16 +1,5 @@
 #!/usr/bin/env python
 # -*- coding: gbk -*-
-########################################################################
-# 
-# Copyright (c) 2016 Baidu.com, Inc. All Rights Reserved
-# 
-########################################################################
- 
-"""
-File: common_import.py
-Author: root(root@baidu.com)
-Date: 2016/07/10 09:40:13
-"""
 
 import sys
 import os

@@ -6,12 +6,6 @@
 # 
 ########################################################################
  
-"""
-File: keras_demo.py
-Author: daiwenkai(daiwenkai@baidu.com)
-    Date: 2016/07/10 13:04:28
-"""
-
 import os
 import ConfigParser
 import logging
@@ -43,6 +37,7 @@ data_path = base_path + '/data/'
 
 def my_cnn_load_data():
     """
+    my_cnn_load_data
     """
     (X_train, y_train), (X_test, y_test) = mnist.load_data()
     X_train = X_train.reshape(X_train.shape[0], 1, 28, 28) 
@@ -79,7 +74,7 @@ def my_cnn_create_model(num_classes):
 
 def my_load_data(data_file, delimiter, lst_x_keys, lst_y_keys):
     """
-    load data
+    my load data
     """
     # Load the dataset
     dataset = numpy.loadtxt(data_file, delimiter=delimiter) 
@@ -93,7 +88,7 @@ def my_load_data(data_file, delimiter, lst_x_keys, lst_y_keys):
 
 def my_create_model():
     """
-    create model
+    my create model
     """
     print "using self defined create_model!!"
     # Define and Compile 
@@ -111,6 +106,7 @@ def my_create_model():
 
 def train_keras_demo():
     """
+    train_keras_demo
     """
     data_file = data_path + 'pima-indians-diabetes.csv'
     lst_x_keys = list(xrange(0, 8))
@@ -154,6 +150,7 @@ def train_keras_demo():
 
 def train_keras_sklearn_demo():
     """
+    train_keras_sklearn_demo
     """
     ## sklearn
     data_file = data_path + 'pima-indians-diabetes.csv'
@@ -201,6 +198,7 @@ def train_keras_sklearn_demo():
 
 def train_keras_cnn_demo():
     """
+    train_keras_cnn_demo
     """
     ### base
     config_file = config_path + 'demo_base.conf'
