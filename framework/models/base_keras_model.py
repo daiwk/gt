@@ -6,11 +6,11 @@
 # 
 ########################################################################
  
-"""
+'''
 File: base_keras_model.py
 Author: daiwenkai(daiwenkai@baidu.com)
     Date: 2016/07/10 13:04:28
-"""
+'''
 
 import sys
 import os
@@ -48,9 +48,9 @@ class LossHistory(Callback):
 
 
 def create_model_demo():
-    """
+    '''
     create model
-    """
+    '''
     # Define and Compile 
     model = Sequential()
     model.add(Dense(12, input_dim=8, init='uniform', activation='relu')) 
@@ -88,9 +88,9 @@ class BaseKerasModel(base_model.BaseModel):
         self.dic_params = {}
    
     def create_model(self):
-        """
+        '''
         create model
-        """
+        '''
         # Define and Compile 
         model = Sequential()
         model.add(Dense(12, input_dim=8, init='uniform', activation='relu')) 
@@ -104,9 +104,9 @@ class BaseKerasModel(base_model.BaseModel):
         return model
     
     def init_callbacks(self):
-        """
+        '''
         init all callbacks
-        """
+        '''
         os.system("mkdir -p %s" % (self.model_path))
         checkpoint_callback = ModelCheckpoint(self.model_path + '/weights.{epoch:02d}-{acc:.2f}.hdf5', \
                 monitor='acc', save_best_only=False)
@@ -115,15 +115,15 @@ class BaseKerasModel(base_model.BaseModel):
         self.dic_params["callbacks"] = callbacks_list
 
     def init_model(self):
-        """
+        '''
         init model
-        """
+        '''
         self.model = self.create_model_func(**self.kargs["create_model"]["params"])
     
     def train_model(self, ):
-        """
+        '''
         train model
-        """
+        '''
         X = self.X
         Y = self.Y
         X_evaluation = self.X_evaluation
@@ -139,9 +139,9 @@ class BaseKerasModel(base_model.BaseModel):
         logging.info(str(history.history))
     
     def process(self):
-        """
+        '''
         process
-        """
+        '''
         self.init_callbacks()
         self.init_model()
         self.train_model()

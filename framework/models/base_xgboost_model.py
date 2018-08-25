@@ -6,11 +6,11 @@
 # 
 ########################################################################
  
-"""
+'''
 File: base_xgboost_model.py
 Author: daiwenkai(daiwenkai@baidu.com)
     Date: 2016/07/10 13:04:28
-"""
+'''
 
 import sys
 import os
@@ -40,13 +40,13 @@ from xgboost import plot_importance
 from matplotlib import pyplot
 
 class BaseXGBoostModel(base_model.BaseModel):
-    """
+    '''
     base xgboost model based on xgboost's model
-    """
+    '''
     def __init__(self, **kargs):
-        """
+        '''
         init
-        """
+        '''
         import framework.tools.log as log
         self.kargs = kargs
         self.dic_params = {}
@@ -60,15 +60,15 @@ class BaseXGBoostModel(base_model.BaseModel):
         dic_params = {}
 
     def init_model(self):
-        """
+        '''
         init model
-        """
+        '''
         self.model = self.create_model_func(**self.kargs["create_model"]["params"])
     
     def train_model(self, ):
-        """
+        '''
         train model
-        """
+        '''
         X = self.X
         Y = self.Y
         X_evaluation = self.X_evaluation
@@ -82,9 +82,9 @@ class BaseXGBoostModel(base_model.BaseModel):
         
     
     def process(self):
-        """
+        '''
         process
-        """
+        '''
         #self.init_callbacks()
         self.init_model()
         self.train_model()

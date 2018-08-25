@@ -6,11 +6,11 @@
 # 
 ########################################################################
  
-"""
+'''
 File: base_model.py
 Author: daiwenkai(daiwenkai@baidu.com)
     Date: 2016/07/10 13:04:28
-"""
+'''
 
 import sys
 import os
@@ -24,43 +24,43 @@ config_path = base_path + '/conf/'
 import logging
 
 class BaseModel(object):
-    """
+    '''
     base keras model based on keras's model(without sklearn)
-    """
+    '''
     def __init__(self):
-        """
+        '''
         init
-        """
+        '''
         pass
 
     def load_data(self, data_file, delimiter, lst_x_keys, lst_y_keys):
-        """
+        '''
         load data
-        """
+        '''
         pass
     
     def create_model(self):
-        """
+        '''
         create model
-        """
+        '''
         pass
     
     def init_model(self):
-        """
+        '''
         init model
-        """
+        '''
         self.model = self.create_model()
     
     def train_model(self, ):
-        """
+        '''
         train model
-        """
+        '''
         pass
     
     def process(self):
-        """
+        '''
         process
-        """
+        '''
         self.init_model()
         self.train_model()
 
