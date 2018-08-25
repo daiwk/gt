@@ -65,15 +65,17 @@ def create_model_demo():
 
 
 class BaseKerasModel(base_model.BaseModel):
-    """
+    '''
     base keras model based on keras's model(without sklearn)
-    """
+    '''
 ##def __init__(self, data_file, delimiter, lst_x_keys, lst_y_keys, \
 ##            log_filename=DEFAULT_LOG_FILENAME, model_path=DEFAULT_MODEL_PATH, create_model_func=create_model_demo):
     def __init__(self, **kargs):
-        """
+        '''
         init
-        """
+        :return:
+        kargs:<dict>
+        '''
         import framework.tools.log as log
         self.kargs = kargs
         log_filename = self.kargs["basic_params"]["log_filename"]
