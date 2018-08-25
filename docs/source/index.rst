@@ -7,13 +7,6 @@ Welcome to daiwk-gt's documentation!
 ====================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-
-   haha
-   -----
-
-.. toctree::
    :maxdepth: 4
    :caption: API docs:
 
