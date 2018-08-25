@@ -6,12 +6,6 @@
 # 
 ########################################################################
  
-"""
-File: scripts/xgboost_demo.py
-Author: root(root@baidu.com)
-Date: 2016/09/24 17:52:34
-"""
-
 import os
 import ConfigParser
 import logging
