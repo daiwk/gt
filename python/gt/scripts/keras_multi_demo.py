@@ -1,11 +1,13 @@
+#!/usr/bin/env python
+# -*- coding: gbk -*-
 # author: flyzzaway
-'''
-export PATH=/opt/compiler/gcc-4.8.2/bin/:$PATH
-import theano
-theano.config.openmp = True
-OMP_NUM_THREADS=20 python xxx.py
-就可以跑多核cpu了。。另外 装个jumbo install htop，可以看到每个核的占用情况。。
-'''
+
+##export PATH=/opt/compiler/gcc-4.8.2/bin/:$PATH
+##import theano
+##theano.config.openmp = True
+##OMP_NUM_THREADS=20 python xxx.py
+##就可以跑多核cpu了。。另外 装个jumbo install htop，可以看到每个核的占用情况。。
+
 import numpy as np
 import pandas as pd
 import gc
