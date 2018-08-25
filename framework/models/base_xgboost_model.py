@@ -6,12 +6,6 @@
 # 
 ########################################################################
  
-'''
-File: base_xgboost_model.py
-Author: daiwenkai(daiwenkai@baidu.com)
-    Date: 2016/07/10 13:04:28
-'''
-
 import sys
 import os
 import ConfigParser

@@ -6,12 +6,6 @@
 # 
 ########################################################################
  
-'''
-File: base_keras_sklearn_model.py
-Author: daiwenkai(daiwenkai@baidu.com)
-    Date: 2016/07/10 13:04:28
-'''
-
 import sys
 import os
 import ConfigParser
@@ -42,10 +36,19 @@ from sklearn.cross_validation import StratifiedKFold
 from sklearn.cross_validation import cross_val_score
 
 class LossHistory(Callback):
+    '''
+    loss history
+    '''
     def on_train_begin(self, logs={}):
+        '''
+        on_train_begin
+        '''
         self.losses = []
 
     def on_batch_end(self, batch, logs={}):
+        '''
+        on_batch_end
+        '''
         self.losses.append(logs.get('loss'))
 
 

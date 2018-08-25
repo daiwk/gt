@@ -1,23 +1,4 @@
 # -*- coding: gbk -*-
-'''
-/***************************************************************************
- * 
- * Copyright (c) 2015 Baidu.com, Inc. All Rights Reserved
- * $Id$ 
- * 
- **************************************************************************/
- 
- 
- 
-/**
- * @file log.py
- * @author daiwenkai(daiwenkai@baidu.com)
- * @date 2015/01/06 23:12:31
- * @version $Revision$ 
- * @brief 
- *  
- **/
-'''
 
 import os
 import logging

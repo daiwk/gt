@@ -10,9 +10,12 @@ Welcome to daiwk-gt's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+   haha
+   -----
+
 .. toctree::
-   :maxdepth: 1
-   :caption: xxx:
+   :maxdepth: 4
+   :caption: API docs:
 
    modules
 

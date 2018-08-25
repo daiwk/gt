@@ -6,12 +6,6 @@
 # 
 ########################################################################
  
-'''
-File: base_model.py
-Author: daiwenkai(daiwenkai@baidu.com)
-    Date: 2016/07/10 13:04:28
-'''
-
 import sys
 import os
 import ConfigParser
@@ -25,7 +19,7 @@ import logging
 
 class BaseModel(object):
     '''
-    base keras model based on keras's model(without sklearn)
+    base model class
     '''
     def __init__(self):
         '''
