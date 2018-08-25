@@ -1,13 +1,13 @@
-tools package
-=============
+framework.tools package
+=======================
 
 Submodules
 ----------
 
-tools.log module
-----------------
+framework.tools.log module
+--------------------------
 
-.. automodule:: tools.log
+.. automodule:: framework.tools.log
     :members:
     :undoc-members:
     :show-inheritance:
@@ -16,7 +16,7 @@ tools.log module
 Module contents
 ---------------
 
-.. automodule:: tools
+.. automodule:: framework.tools
     :members:
     :undoc-members:
     :show-inheritance:
