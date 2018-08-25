@@ -1,7 +1,8 @@
-framework
-=========
+plugins
+=======
 
 .. toctree::
    :maxdepth: 4
 
+   plugins
    framework
