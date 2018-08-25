@@ -1,4 +1,4 @@
-# -*- coding: gbk -*-
+# -*- coding: utf8 -*-
 
 import os
 import logging
@@ -82,7 +82,7 @@ def init_log(file, level=logging.INFO, when="D", backup=7,
 
     handler = logging.handlers.TimedRotatingFileHandler(file + ".log",
                                                         when=when,
-                                                        encoding="gbk",
+                                                        encoding="utf8",
                                                         backupCount=backup)
     handler.setLevel(level)
     handler.setFormatter(formatter)

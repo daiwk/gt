@@ -1,5 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: gbk -*-
+# -*- coding: utf8 -*-
 # author: flyzzaway
 
 ##export PATH=/opt/compiler/gcc-4.8.2/bin/:$PATH

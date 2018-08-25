@@ -1,20 +1,8 @@
 #!/usr/bin/env python
-# -*- coding: gbk -*-
-########################################################################
-# 
-# Copyright (c) 2017 Baidu.com, Inc. All Rights Reserved
-# 
-########################################################################
+# -*- coding: utf8 -*-
  
-"""
-all can be refered to:
-
-http://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
-
-File: calc_metrics.py
-Author: daiwenkai(daiwenkai@baidu.com)
-Date: 2017/07/06 23:36:22
-"""
+#all can be refered to:
+#http://scikit-learn.org/stable/modules/classes.html#module-sklearn.metrics
 
 from math import sqrt
 

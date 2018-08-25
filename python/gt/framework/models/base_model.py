@@ -1,10 +1,5 @@
 #!/usr/bin/env python
-# -*- coding: gbk -*-
-########################################################################
-# 
-# Copyright (c) 2016 Baidu.com, Inc. All Rights Reserved
-# 
-########################################################################
+# -*- coding: utf8 -*-
  
 import sys
 import os
