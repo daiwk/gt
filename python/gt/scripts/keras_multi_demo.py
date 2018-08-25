@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import gc
 from keras.models import Sequential
-from keras.layers import Dense,Dropout,Embedding,Merge,Activation,Flatten
+from keras.layers import Dense,Dropout,Embedding,Concatenate,Activation,Flatten
 from keras.layers.advanced_activations import PReLU
 from keras.layers.normalization import BatchNormalization
 from keras import regularizers
@@ -93,7 +93,7 @@ def multi_input_model(model,max_dict):
     
     model_uidview_onehour_doc = sub_input_model(max_dict,embedding_size = 50,max_name = 'max_docids',input_shape_dim1 = 123,name = 'uidview_onehour_doc')
     
-    model.add(Merge([model_displayid, model_adid, model_platform,model_hour,model_weekday,model_uid,model_documentid,model_campaignid,\
+    model.add(Concatenate([model_displayid, model_adid, model_platform,model_hour,model_weekday,model_uid,model_documentid,model_campaignid,\
                      model_advertiserid,model_sourceidx,model_categoryid,model_entityid,model_topicid,model_uidview_doc,\
                       model_uidview_source,model_uidview_onehour_doc], mode='concat', concat_axis=1))
     
