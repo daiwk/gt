@@ -1,8 +1,7 @@
-gt
-==
+python
+======
 
 .. toctree::
    :maxdepth: 4
 
-   framework
-   scripts
+   gt
