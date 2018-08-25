@@ -10,6 +10,12 @@ Welcome to daiwk-gt's documentation!
    :maxdepth: 2
    :caption: Contents:
 
+.. toctree::
+   :maxdepth: 1
+   :caption: xxx:
+
+   modules.rst
+   framework.models.rst
 
 
 Indices and tables
