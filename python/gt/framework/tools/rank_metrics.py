@@ -16,6 +16,7 @@ def mean_reciprocal_rank(rs):
     First element is 'rank 1'.  Relevance is binary (nonzero is relevant).
 
     Example from http://en.wikipedia.org/wiki/Mean_reciprocal_rank
+
     >>> rs = [[0, 0, 1], [0, 1, 0], [1, 0, 0]]
     >>> mean_reciprocal_rank(rs)
     0.61111111111111105
@@ -157,6 +158,7 @@ def dcg_at_k(r, k, method=0):
 
     Example from
     http://www.stanford.edu/class/cs276/handouts/EvaluationNew-handout-6-per.pdf
+
     >>> r = [3, 2, 3, 0, 0, 1, 2, 2, 3, 0]
     >>> dcg_at_k(r, 1)
     3.0
