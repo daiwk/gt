@@ -1,5 +1,5 @@
 # -*- coding: gbk -*-
-"""
+'''
 /***************************************************************************
  * 
  * Copyright (c) 2015 Baidu.com, Inc. All Rights Reserved
@@ -17,27 +17,27 @@
  * @brief 
  *  
  **/
-"""
+'''
 
 import os
 import logging
 import logging.handlers
 
 class SingleLevelFilter(logging.Filter):
-    """
+    '''
     filter specific log level
-    """
+    '''
     def __init__(self, passlevel, reject):
-        """
+        '''
         init
-        """
+        '''
         self.passlevel = passlevel
         self.reject = reject
 
     def filter(self, record):
-        """
+        '''
         real filter func
-        """
+        '''
         if self.reject:
             return (record.levelno != self.passlevel)
         else:
@@ -55,7 +55,7 @@ class SingleLevelFilter(logging.Filter):
 def init_log(file, level=logging.INFO, when="D", backup=7,
              format="%(levelname)s: %(asctime)s: %(filename)s:%(lineno)d * %(thread)d %(message)s",
              datefmt="%m-%d %H:%M:%S"):
-    """
+    '''
     init_log - initialize log module
 
     Args:
@@ -82,7 +82,7 @@ def init_log(file, level=logging.INFO, when="D", backup=7,
     Raises:
         OSError: fail to create log directories
         IOError: fail to open log file
-    """
+    '''
     formatter = logging.Formatter(format, datefmt)
     logger = logging.getLogger()
     for hd in logger.handlers:
@@ -120,6 +120,6 @@ def init_log(file, level=logging.INFO, when="D", backup=7,
     logger.addHandler(handler)
     return logger
 
-"""
+'''
 /* vim: set ts=4 sw=4 sts=4 tw=100 */
-"""
+'''
