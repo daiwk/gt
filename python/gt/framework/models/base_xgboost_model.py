@@ -18,11 +18,7 @@ import numpy
 from numpy import loadtxt
 
 import sklearn
-from sklearn.cross_validation import train_test_split
 from sklearn.metrics import accuracy_score
-
-from sklearn.cross_validation import StratifiedKFold
-from sklearn.cross_validation import cross_val_score
 
 from xgboost import XGBClassifier
 from xgboost import plot_importance
