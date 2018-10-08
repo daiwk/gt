@@ -31,9 +31,9 @@ data_path = base_path + '/data/'
 
 
 def my_cnn_load_data():
-    """
+    '''
     my_cnn_load_data
-    """
+    '''
     (X_train, y_train), (X_test, y_test) = mnist.load_data()
     X_train = X_train.reshape(X_train.shape[0], 1, 28, 28) 
     X_test = X_test.reshape(X_test.shape[0], 1, 28, 28)
@@ -50,9 +50,9 @@ def my_cnn_load_data():
 
 
 def my_cnn_create_model(num_classes):
-    """
+    '''
     create a cnn model
-    """
+    '''
     # Define and Compile 
     model = Sequential()
     model.add(Convolution2D(32, 3, 3, border_mode='valid', input_shape=(1, 28, 28), activation='relu'))
@@ -68,9 +68,9 @@ def my_cnn_create_model(num_classes):
  
 
 def my_load_data(data_file, delimiter, lst_x_keys, lst_y_keys):
-    """
+    '''
     my load data
-    """
+    '''
     # Load the dataset
     dataset = numpy.loadtxt(data_file, delimiter=delimiter) 
     X = dataset[:, lst_x_keys] 
@@ -82,9 +82,9 @@ def my_load_data(data_file, delimiter, lst_x_keys, lst_y_keys):
  
 
 def my_create_model():
-    """
+    '''
     my create model
-    """
+    '''
     print "using self defined create_model!!"
     # Define and Compile 
     model = Sequential()
@@ -100,9 +100,9 @@ def my_create_model():
  
 
 def train_keras_demo():
-    """
+    '''
     train_keras_demo
-    """
+    '''
     data_file = data_path + 'pima-indians-diabetes.csv'
     lst_x_keys = list(xrange(0, 8))
     lst_y_keys = 8
@@ -144,9 +144,9 @@ def train_keras_demo():
 
 
 def train_keras_sklearn_demo():
-    """
+    '''
     train_keras_sklearn_demo
-    """
+    '''
     ## sklearn
     data_file = data_path + 'pima-indians-diabetes.csv'
     lst_x_keys = list(xrange(0, 8))
@@ -192,9 +192,9 @@ def train_keras_sklearn_demo():
 
 
 def train_keras_cnn_demo():
-    """
+    '''
     train_keras_cnn_demo
-    """
+    '''
     ### base
     config_file = config_path + 'demo_base.conf'
     conf = ConfigParser.ConfigParser()
