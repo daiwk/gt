@@ -1,7 +1,7 @@
 tensorflow
 keras
 xgboost
-sklearn==0.18.2
+sklearn
 numpy
 pandas
 matplotlib
