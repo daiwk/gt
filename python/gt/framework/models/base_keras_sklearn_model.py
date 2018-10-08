@@ -27,7 +27,6 @@ from keras.callbacks import ModelCheckpoint
 from keras.callbacks import Callback
 
 import sklearn
-from sklearn.cross_validation import StratifiedKFold
 
 class LossHistory(Callback):
     '''
@@ -133,7 +132,6 @@ class BaseKerasSklearnModel(base_model.BaseModel):
         Y_evaluation = self.Y_evaluation
         seed = 7
         numpy.random.seed(seed) # Load the dataset
-        kfold = StratifiedKFold(y=Y, n_folds=10, shuffle=True, random_state=seed)
         
         history = self.model.fit(X, Y)
         scores = self.model.score(X, Y)
