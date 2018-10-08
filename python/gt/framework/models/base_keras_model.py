@@ -29,26 +29,26 @@ from sklearn.cross_validation import StratifiedKFold
 from sklearn.cross_validation import cross_val_score
 
 class LossHistory(Callback):
-    '''
+    """
     loss history
-    '''
+    """
     def on_train_begin(self, logs={}):
-        '''
+        """
         on_train_begin
-        '''
+        """
         self.losses = []
 
     def on_batch_end(self, batch, logs={}):
-        '''
+        """
         on_batch_end
-        '''
+        """
         self.losses.append(logs.get('loss'))
 
 
 def create_model_demo():
-    '''
+    """
     create model
-    '''
+    """
     # Define and Compile 
     model = Sequential()
     model.add(Dense(12, input_dim=8, init='uniform', activation='relu')) 
@@ -63,17 +63,17 @@ def create_model_demo():
 
 
 class BaseKerasModel(base_model.BaseModel):
-    '''
+    """
     base keras model based on keras's model(without sklearn)
-    '''
+    """
 ##def __init__(self, data_file, delimiter, lst_x_keys, lst_y_keys, \
 ##            log_filename=DEFAULT_LOG_FILENAME, model_path=DEFAULT_MODEL_PATH, create_model_func=create_model_demo):
     def __init__(self, **kargs):
-        '''
+        """
         init
         :return:
         kargs:<dict>
-        '''
+        """
         import framework.tools.log as log
         self.kargs = kargs
         log_filename = self.kargs["basic_params"]["log_filename"]
@@ -86,9 +86,9 @@ class BaseKerasModel(base_model.BaseModel):
         self.dic_params = {}
    
     def create_model(self):
-        '''
+        """
         create model
-        '''
+        """
         # Define and Compile 
         model = Sequential()
         model.add(Dense(12, input_dim=8, init='uniform', activation='relu')) 
@@ -102,9 +102,9 @@ class BaseKerasModel(base_model.BaseModel):
         return model
     
     def init_callbacks(self):
-        '''
+        """
         init all callbacks
-        '''
+        """
         os.system("mkdir -p %s" % (self.model_path))
         checkpoint_callback = ModelCheckpoint(self.model_path + '/weights.{epoch:02d}-{acc:.2f}.hdf5', \
                 monitor='acc', save_best_only=False)
@@ -113,15 +113,15 @@ class BaseKerasModel(base_model.BaseModel):
         self.dic_params["callbacks"] = callbacks_list
 
     def init_model(self):
-        '''
+        """
         init model
-        '''
+        """
         self.model = self.create_model_func(**self.kargs["create_model"]["params"])
     
     def train_model(self, ):
-        '''
+        """
         train model
-        '''
+        """
         X = self.X
         Y = self.Y
         X_evaluation = self.X_evaluation
@@ -137,9 +137,9 @@ class BaseKerasModel(base_model.BaseModel):
         logging.info(str(history.history))
     
     def process(self):
-        '''
+        """
         process
-        '''
+        """
         self.init_callbacks()
         self.init_model()
         self.train_model()
