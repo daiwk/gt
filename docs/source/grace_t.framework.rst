@@ -1,4 +1,4 @@
-grace\-t.framework package
+grace\_t.framework package
 ==========================
 
 Subpackages
@@ -6,13 +6,13 @@ Subpackages
 
 .. toctree::
 
-    grace-t.framework.models
-    grace-t.framework.tools
+    grace_t.framework.models
+    grace_t.framework.tools
 
 Module contents
 ---------------
 
-.. automodule:: grace-t.framework
+.. automodule:: grace_t.framework
     :members:
     :undoc-members:
     :show-inheritance:

@@ -1,4 +1,4 @@
-grace\-t package
+grace\_t package
 ================
 
 Subpackages
@@ -6,16 +6,16 @@ Subpackages
 
 .. toctree::
 
-    grace-t.framework
-    grace-t.scripts
+    grace_t.framework
+    grace_t.scripts
 
 Submodules
 ----------
 
-grace\-t.setup module
+grace\_t.setup module
 ---------------------
 
-.. automodule:: grace-t.setup
+.. automodule:: grace_t.setup
     :members:
     :undoc-members:
     :show-inheritance:
@@ -24,7 +24,7 @@ grace\-t.setup module
 Module contents
 ---------------
 
-.. automodule:: grace-t
+.. automodule:: grace_t
     :members:
     :undoc-members:
     :show-inheritance:

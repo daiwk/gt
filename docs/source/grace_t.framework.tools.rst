@@ -1,29 +1,29 @@
-grace\-t.framework.tools package
+grace\_t.framework.tools package
 ================================
 
 Submodules
 ----------
 
-grace\-t.framework.tools.calc\_metrics module
+grace\_t.framework.tools.calc\_metrics module
 ---------------------------------------------
 
-.. automodule:: grace-t.framework.tools.calc_metrics
+.. automodule:: grace_t.framework.tools.calc_metrics
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.framework.tools.log module
+grace\_t.framework.tools.log module
 -----------------------------------
 
-.. automodule:: grace-t.framework.tools.log
+.. automodule:: grace_t.framework.tools.log
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.framework.tools.rank\_metrics module
+grace\_t.framework.tools.rank\_metrics module
 ---------------------------------------------
 
-.. automodule:: grace-t.framework.tools.rank_metrics
+.. automodule:: grace_t.framework.tools.rank_metrics
     :members:
     :undoc-members:
     :show-inheritance:
@@ -32,7 +32,7 @@ grace\-t.framework.tools.rank\_metrics module
 Module contents
 ---------------
 
-.. automodule:: grace-t.framework.tools
+.. automodule:: grace_t.framework.tools
     :members:
     :undoc-members:
     :show-inheritance:

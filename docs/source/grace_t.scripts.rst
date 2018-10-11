@@ -1,37 +1,37 @@
-grace\-t.scripts package
+grace\_t.scripts package
 ========================
 
 Submodules
 ----------
 
-grace\-t.scripts.common\_import module
+grace\_t.scripts.common\_import module
 --------------------------------------
 
-.. automodule:: grace-t.scripts.common_import
+.. automodule:: grace_t.scripts.common_import
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.scripts.keras\_demo module
+grace\_t.scripts.keras\_demo module
 -----------------------------------
 
-.. automodule:: grace-t.scripts.keras_demo
+.. automodule:: grace_t.scripts.keras_demo
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.scripts.keras\_multi\_demo module
+grace\_t.scripts.keras\_multi\_demo module
 ------------------------------------------
 
-.. automodule:: grace-t.scripts.keras_multi_demo
+.. automodule:: grace_t.scripts.keras_multi_demo
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.scripts.xgboost\_demo module
+grace\_t.scripts.xgboost\_demo module
 -------------------------------------
 
-.. automodule:: grace-t.scripts.xgboost_demo
+.. automodule:: grace_t.scripts.xgboost_demo
     :members:
     :undoc-members:
     :show-inheritance:
@@ -40,7 +40,7 @@ grace\-t.scripts.xgboost\_demo module
 Module contents
 ---------------
 
-.. automodule:: grace-t.scripts
+.. automodule:: grace_t.scripts
     :members:
     :undoc-members:
     :show-inheritance:

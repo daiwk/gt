@@ -4,8 +4,8 @@
 from setuptools import setup, find_packages
 
 setup(
-    name='grace-t',
-    version=0.1.0,
+    name='grace_t',
+    version="0.1.0",
     description=(
         'desc'
     ),

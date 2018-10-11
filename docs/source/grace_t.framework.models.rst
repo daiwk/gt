@@ -1,37 +1,37 @@
-grace\-t.framework.models package
+grace\_t.framework.models package
 =================================
 
 Submodules
 ----------
 
-grace\-t.framework.models.base\_keras\_model module
+grace\_t.framework.models.base\_keras\_model module
 ---------------------------------------------------
 
-.. automodule:: grace-t.framework.models.base_keras_model
+.. automodule:: grace_t.framework.models.base_keras_model
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.framework.models.base\_keras\_sklearn\_model module
+grace\_t.framework.models.base\_keras\_sklearn\_model module
 ------------------------------------------------------------
 
-.. automodule:: grace-t.framework.models.base_keras_sklearn_model
+.. automodule:: grace_t.framework.models.base_keras_sklearn_model
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.framework.models.base\_model module
+grace\_t.framework.models.base\_model module
 --------------------------------------------
 
-.. automodule:: grace-t.framework.models.base_model
+.. automodule:: grace_t.framework.models.base_model
     :members:
     :undoc-members:
     :show-inheritance:
 
-grace\-t.framework.models.base\_xgboost\_model module
+grace\_t.framework.models.base\_xgboost\_model module
 -----------------------------------------------------
 
-.. automodule:: grace-t.framework.models.base_xgboost_model
+.. automodule:: grace_t.framework.models.base_xgboost_model
     :members:
     :undoc-members:
     :show-inheritance:
@@ -40,7 +40,7 @@ grace\-t.framework.models.base\_xgboost\_model module
 Module contents
 ---------------
 
-.. automodule:: grace-t.framework.models
+.. automodule:: grace_t.framework.models
     :members:
     :undoc-members:
     :show-inheritance:
